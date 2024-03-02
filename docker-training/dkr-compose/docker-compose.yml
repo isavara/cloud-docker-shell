@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    image: python:3.8-alpine
+    command: python -m http.server 8000 --directory /html
+    ports:
+      - "8000:8000"
+    volumes:
+      - /html:/html
+    working_dir: /html
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+
